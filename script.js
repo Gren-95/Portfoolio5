@@ -575,12 +575,11 @@ initTheme();
 
 // Theme toggle button event
 $(document).ready(function () {
-    // Render portfolio posts
-    renderPosts();
-
     // Render education and experience entries
     renderEducation();
     renderExperience();
+    
+    // Portfolio posts will be rendered when the tab is shown
 
     // Load and render markdown file
     function loadMarkdown() {
@@ -738,6 +737,13 @@ $(document).ready(function () {
             if (i === index) { $(this).addClass('bg-stone-700 dark:bg-stone-300 text-amber-300 dark:text-amber-700').removeClass('text-stone-200 dark:text-stone-900'); }
             else { $(this).removeClass('bg-stone-700 dark:bg-stone-300 text-amber-300 dark:text-amber-700').addClass('text-stone-200 dark:text-stone-900'); }
         });
+
+        // Re-render portfolio posts when portfolio tab is shown (index 2)
+        if (index === 2) {
+            setTimeout(() => {
+                renderPosts(currentFilterCategory);
+            }, 100);
+        }
 
         // Save current tab to localStorage
         localStorage.setItem('activeTab', index);
