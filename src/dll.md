@@ -1,10 +1,12 @@
 ## IT News
+
 * [PCMag](https://www.pcmag.com/)
 * [Tech PowerUp](https://www.techpowerup.com/)
 * [The Verge](https://www.theverge.com/tech)
 * [CNET](https://www.cnet.com/news/)
 
 ## Windows essentials
+
 * [Windows driver installer](https://www.snappy-driver-installer.org/)
 * [Windows mass installing programs](https://www.ninite.com/)
 * [AMD Radeon drivers](https://www.amd.com/en/support)
@@ -16,11 +18,13 @@
 * [Winget-cli](https://github.com/microsoft/winget-cli)
 
 ## Useful programs
+
 * [FileZilla](https://filezilla-project.org/)
 * [Putty (ssh)](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
 * [Ventoy](https://www.ventoy.net/en/download.html)
 
 ## Useful links
+
 * [Useful stuff](https://www.christitus.com/)
 * [Tech PowerUp downloads](https://www.techpowerup.com/download/benchmarking/)
 * [Adguard DNS](https://adguard-dns.io/)
@@ -36,6 +40,7 @@
 * [Fonts](https://fontawesome.com/)
 
 ## Stress test stuff
+
 * [CPU Prime 95](https://www.techpowerup.com/download/prime95/)
 * [GPU Furmark](https://www.geeks3d.com/furmark/)
 * [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)
@@ -44,11 +49,13 @@
 * [User benchmark comparisons](https://www.userbenchmark.com/?redirFrom=userbenchmark.com)
 
 ## Internal links
+
 * [Boot failure flowchart](./images/flowchart.png)
 
 ## Browsers
 
 ### Chrome Based
+
 * Chrome
 * Chromium
 * Brave
@@ -58,16 +65,19 @@
 * Falkon
 
 ### Firefox Based
+
 * Firefox
 * Waterfox
 * Tor
 
 ### Safari Based
+
 * GNOME Web
 
 ## Linux Distros
 
 ### Debian Based
+
 * Ubuntu
 * Zorin
 * Pop
@@ -76,16 +86,19 @@
 * KDE Neon
 
 ### Fedora Based
+
 * Fedora
 * Nobara
 * Bazzite
 
 ### Arch Based
+
 * Arch
 * Manjaro
 * ChimeraOS
 
 ## MacOS X
+
 * [MacOS X compatibility](https://yama-mac.com/en/macos_correspondence_table/)
 * [Key Combinations](https://www.macobserver.com/tmo/article/15-startup-key-combinations-for-mac)
 * [MacOS Brew](https://brew.sh/)

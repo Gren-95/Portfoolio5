@@ -714,18 +714,18 @@ $(document).ready(function () {
 
                 // Apply custom styling to match the site's design
                 let styledHtml = html
-                    .replace(/<h1>/g, '<h1 class="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">')
-                    .replace(/<h2>/g, '<h2 class="text-2xl font-semibold mb-4 mt-6 text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">')
-                    .replace(/<h3>/g, '<h3 class="text-xl font-semibold mb-3 mt-4 text-stone-200">')
-                    .replace(/<ul>/g, '<ul class="list-disc list-inside space-y-2 mb-4 text-stone-300">')
+                    .replace(/<h1>/g, '<h1 class="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400">')
+                    .replace(/<h2>/g, '<h2 class="text-2xl font-semibold mb-4 mt-6 text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400">')
+                    .replace(/<h3>/g, '<h3 class="text-xl font-semibold mb-3 mt-4 text-stone-800 dark:text-stone-200">')
+                    .replace(/<ul>/g, '<ul class="list-disc list-inside space-y-2 mb-4 text-stone-800 dark:text-stone-300">')
                     .replace(/<li>/g, '<li class="text-base md:text-lg">')
-                    .replace(/<p>/g, '<p class="mb-4 text-stone-300 text-base md:text-lg">');
+                    .replace(/<p>/g, '<p class="mb-4 text-stone-800 dark:text-stone-300 text-base md:text-lg">');
 
                 // Handle links - add classes and target="_blank" for external links
                 styledHtml = styledHtml.replace(/<a href="([^"]+)">/g, function (match, href) {
                     const isExternal = href.startsWith('http') || href.startsWith('//');
                     const target = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-                    return `<a href="${href}" class="text-amber-400 hover:text-amber-300 underline transition-colors"${target}>`;
+                    return `<a href="${href}" class="text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 underline transition-colors"${target}>`;
                 });
 
                 // Style images
