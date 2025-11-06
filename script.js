@@ -582,8 +582,65 @@ $(document).ready(function () {
     renderEducation();
     renderExperience();
 
+    // Load and render markdown file
+    function loadMarkdown() {
+        console.log('Loading markdown...');
+        fetch('./src/dll.md')
+            .then(response => response.text())
+            .then(markdown => {
+                // Configure marked options
+                marked.setOptions({
+                    breaks: true,
+                    gfm: true
+                });
+
+                // Convert markdown to HTML
+                const html = marked.parse(markdown);
+
+                // Apply custom styling to match the site's design
+                // First, add inline styles to ensure visibility
+                const isDark = document.documentElement.classList.contains('dark');
+                // INVERTED: dark class means light mode, no dark class means dark mode
+                const textColor = !isDark ? 'rgb(214, 211, 209)' : 'rgb(0, 0, 0)'; // light gray : black
+                const h1Color = !isDark ? 'rgb(251, 191, 36)' : 'rgb(120, 53, 15)'; // amber-400 : amber-900
+                const h2Color = !isDark ? 'rgb(45, 212, 191)' : 'rgb(19, 78, 74)'; // teal-400 : teal-900
+                
+                console.log(`Has 'dark' class: ${isDark}, Using dark colors: ${!isDark}, text color: ${textColor}`);
+                
+                let styledHtml = html
+                    .replace(/<h1>/g, `<h1 class="markdown-h1 text-3xl font-bold mb-6" style="color: ${h1Color} !important;">`)
+                    .replace(/<h2>/g, `<h2 class="markdown-h2 text-2xl font-semibold mb-4 mt-6" style="color: ${h2Color} !important;">`)
+                    .replace(/<h3>/g, `<h3 class="markdown-h3 text-xl font-semibold mb-3 mt-4" style="color: ${textColor} !important;">`)
+                    .replace(/<ul>/g, `<ul class="markdown-ul list-disc list-inside space-y-2 mb-4" style="color: ${textColor} !important;">`)
+                    .replace(/<li>/g, `<li class="markdown-li text-base md:text-lg" style="color: ${textColor} !important;">`)
+                    .replace(/<p>/g, `<p class="markdown-p mb-4 text-base md:text-lg" style="color: ${textColor} !important;">`);
+
+                // Handle links - add classes and target="_blank" for external links
+                const linkColor = !isDark ? 'rgb(251, 191, 36)' : 'rgb(180, 83, 9)'; // amber-400 : amber-700 (INVERTED)
+                styledHtml = styledHtml.replace(/<a href="([^"]+)">/g, function (match, href) {
+                    const isExternal = href.startsWith('http') || href.startsWith('//');
+                    const target = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+                    return `<a href="${href}" class="markdown-link text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 underline transition-colors" style="color: ${linkColor} !important;"${target}>`;
+                });
+
+                // Style images
+                styledHtml = styledHtml.replace(/<img /g, '<img class="rounded-xl shadow-lg max-w-full h-auto mb-4" ');
+
+                // Insert into container
+                $('#markdown-content').html(styledHtml);
+            })
+            .catch(error => {
+                console.error('Error loading markdown:', error);
+                $('#markdown-content').html('<p class="text-red-400">Error loading markdown file.</p>');
+            });
+    }
+
     $('#theme-toggle').on('click', function () {
         toggleTheme();
+        // Reload markdown to update colors for new theme
+        setTimeout(() => {
+            loadMarkdown();
+        }, 50);
     });
 
     const filterButtons = $('#filter-buttons button');
@@ -697,48 +754,6 @@ $(document).ready(function () {
     const savedTab = localStorage.getItem('activeTab');
     const initialTab = savedTab !== null ? parseInt(savedTab, 10) : 0;
     showContainer(initialTab);
-
-    // Load and render markdown file
-    function loadMarkdown() {
-        fetch('./src/dll.md')
-            .then(response => response.text())
-            .then(markdown => {
-                // Configure marked options
-                marked.setOptions({
-                    breaks: true,
-                    gfm: true
-                });
-
-                // Convert markdown to HTML
-                const html = marked.parse(markdown);
-
-                // Apply custom styling to match the site's design
-                let styledHtml = html
-                    .replace(/<h1>/g, '<h1 class="markdown-h1 text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400">')
-                    .replace(/<h2>/g, '<h2 class="markdown-h2 text-2xl font-semibold mb-4 mt-6 text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400">')
-                    .replace(/<h3>/g, '<h3 class="markdown-h3 text-xl font-semibold mb-3 mt-4">')
-                    .replace(/<ul>/g, '<ul class="markdown-ul list-disc list-inside space-y-2 mb-4">')
-                    .replace(/<li>/g, '<li class="markdown-li text-base md:text-lg">')
-                    .replace(/<p>/g, '<p class="markdown-p mb-4 text-base md:text-lg">');
-
-                // Handle links - add classes and target="_blank" for external links
-                styledHtml = styledHtml.replace(/<a href="([^"]+)">/g, function (match, href) {
-                    const isExternal = href.startsWith('http') || href.startsWith('//');
-                    const target = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-                    return `<a href="${href}" class="markdown-link text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 underline transition-colors"${target}>`;
-                });
-
-                // Style images
-                styledHtml = styledHtml.replace(/<img /g, '<img class="rounded-xl shadow-lg max-w-full h-auto mb-4" ');
-
-                // Insert into container
-                $('#markdown-content').html(styledHtml);
-            })
-            .catch(error => {
-                console.error('Error loading markdown:', error);
-                $('#markdown-content').html('<p class="text-red-400">Error loading markdown file.</p>');
-            });
-    }
 
     // Load markdown when page is ready
     loadMarkdown();

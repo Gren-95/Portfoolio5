@@ -283,84 +283,188 @@
  }
 
 /* Markdown content styles - override prose defaults for proper contrast */
-#markdown-content {
+/* Base rule - applies to all elements inside markdown-content */
+#markdown-content,
+#markdown-content *,
+#markdown-content.prose,
+#markdown-content.prose * {
     color: rgb(28 25 23) !important;
     /* stone-800 - default text color for light mode */
 }
 
-.dark #markdown-content {
+.dark #markdown-content,
+.dark #markdown-content *,
+.dark #markdown-content.prose,
+.dark #markdown-content.prose * {
     color: rgb(214 211 209) !important;
     /* stone-300 - default text color for dark mode */
 }
 
-#markdown-content .markdown-h1 {
+/* Override any Tailwind text color classes that might be applied */
+#markdown-content .text-stone-100,
+#markdown-content .text-stone-200,
+#markdown-content .text-stone-300,
+#markdown-content .text-stone-400,
+#markdown-content .text-stone-500,
+#markdown-content .text-white,
+#markdown-content .text-gray-100,
+#markdown-content .text-gray-200,
+#markdown-content .text-gray-300,
+#markdown-content .text-gray-400,
+#markdown-content .text-gray-500 {
+    color: rgb(28 25 23) !important;
+}
+
+.dark #markdown-content .text-stone-700,
+.dark #markdown-content .text-stone-800,
+.dark #markdown-content .text-stone-900,
+.dark #markdown-content .text-gray-700,
+.dark #markdown-content .text-gray-800,
+.dark #markdown-content .text-gray-900,
+.dark #markdown-content .text-black {
+    color: rgb(214 211 209) !important;
+}
+
+#markdown-content .markdown-h1,
+#markdown-content.prose h1,
+#markdown-content.prose .markdown-h1 {
     color: rgb(217 119 6) !important;
     /* amber-600 */
 }
 
- .dark #markdown-content .markdown-h1 {
-     color: rgb(251 191 36) !important;
-     /* amber-400 */
- }
+.dark #markdown-content .markdown-h1,
+.dark #markdown-content.prose h1,
+.dark #markdown-content.prose .markdown-h1 {
+    color: rgb(251 191 36) !important;
+    /* amber-400 */
+}
 
- #markdown-content .markdown-h2 {
-     color: rgb(13 148 136) !important;
-     /* teal-600 */
- }
+#markdown-content .markdown-h2,
+#markdown-content.prose h2,
+#markdown-content.prose .markdown-h2 {
+    color: rgb(13 148 136) !important;
+    /* teal-600 */
+}
 
- .dark #markdown-content .markdown-h2 {
-     color: rgb(94 234 212) !important;
-     /* teal-400 */
- }
+.dark #markdown-content .markdown-h2,
+.dark #markdown-content.prose h2,
+.dark #markdown-content.prose .markdown-h2 {
+    color: rgb(94 234 212) !important;
+    /* teal-400 */
+}
 
- #markdown-content .markdown-h3 {
-     color: rgb(28 25 23) !important;
-     /* stone-800 */
- }
+#markdown-content .markdown-h3,
+#markdown-content.prose h3,
+#markdown-content.prose .markdown-h3 {
+    color: rgb(28 25 23) !important;
+    /* stone-800 */
+}
 
- .dark #markdown-content .markdown-h3 {
-     color: rgb(231 229 228) !important;
-     /* stone-200 */
- }
+.dark #markdown-content .markdown-h3,
+.dark #markdown-content.prose h3,
+.dark #markdown-content.prose .markdown-h3 {
+    color: rgb(231 229 228) !important;
+    /* stone-200 */
+}
 
- #markdown-content .markdown-ul,
- #markdown-content .markdown-li,
- #markdown-content .markdown-p {
-     color: rgb(28 25 23) !important;
-     /* stone-800 */
- }
+#markdown-content .markdown-ul,
+#markdown-content .markdown-li,
+#markdown-content .markdown-p,
+#markdown-content.prose ul,
+#markdown-content.prose li,
+#markdown-content.prose p,
+#markdown-content.prose .markdown-ul,
+#markdown-content.prose .markdown-li,
+#markdown-content.prose .markdown-p,
+#markdown-content li,
+#markdown-content ul,
+#markdown-content p {
+    color: rgb(28 25 23) !important;
+    /* stone-800 */
+}
 
- .dark #markdown-content .markdown-ul,
- .dark #markdown-content .markdown-li,
- .dark #markdown-content .markdown-p {
-     color: rgb(214 211 209) !important;
-     /* stone-300 */
- }
+.dark #markdown-content .markdown-ul,
+.dark #markdown-content .markdown-li,
+.dark #markdown-content .markdown-p,
+.dark #markdown-content.prose ul,
+.dark #markdown-content.prose li,
+.dark #markdown-content.prose p,
+.dark #markdown-content.prose .markdown-ul,
+.dark #markdown-content.prose .markdown-li,
+.dark #markdown-content.prose .markdown-p,
+.dark #markdown-content li,
+.dark #markdown-content ul,
+.dark #markdown-content p {
+    color: rgb(214 211 209) !important;
+    /* stone-300 */
+}
+
+/* Ensure all text content is visible - override any inherited colors */
+#markdown-content .markdown-li,
+#markdown-content li,
+#markdown-content .markdown-li *,
+#markdown-content li * {
+    color: rgb(28 25 23) !important;
+}
+
+.dark #markdown-content .markdown-li,
+.dark #markdown-content li,
+.dark #markdown-content .markdown-li *,
+.dark #markdown-content li * {
+    color: rgb(214 211 209) !important;
+}
+
+/* Make sure links override the list item color */
+#markdown-content .markdown-li a,
+#markdown-content li a {
+    color: rgb(217 119 6) !important;
+}
+
+.dark #markdown-content .markdown-li a,
+.dark #markdown-content li a {
+    color: rgb(251 191 36) !important;
+}
 
 #markdown-content .markdown-link,
 #markdown-content .markdown-li a,
-#markdown-content .markdown-p a {
+#markdown-content .markdown-p a,
+#markdown-content.prose a,
+#markdown-content.prose .markdown-link,
+#markdown-content.prose .markdown-li a,
+#markdown-content.prose .markdown-p a {
     color: rgb(217 119 6) !important;
     /* amber-600 */
 }
 
 .dark #markdown-content .markdown-link,
 .dark #markdown-content .markdown-li a,
-.dark #markdown-content .markdown-p a {
+.dark #markdown-content .markdown-p a,
+.dark #markdown-content.prose a,
+.dark #markdown-content.prose .markdown-link,
+.dark #markdown-content.prose .markdown-li a,
+.dark #markdown-content.prose .markdown-p a {
     color: rgb(251 191 36) !important;
     /* amber-400 */
 }
 
 #markdown-content .markdown-link:hover,
 #markdown-content .markdown-li a:hover,
-#markdown-content .markdown-p a:hover {
+#markdown-content .markdown-p a:hover,
+#markdown-content.prose a:hover,
+#markdown-content.prose .markdown-link:hover,
+#markdown-content.prose .markdown-li a:hover,
+#markdown-content.prose .markdown-p a:hover {
     color: rgb(180 83 9) !important;
     /* amber-700 */
 }
 
 .dark #markdown-content .markdown-link:hover,
 .dark #markdown-content .markdown-li a:hover,
-.dark #markdown-content .markdown-p a:hover {
+.dark #markdown-content .markdown-p a:hover,
+.dark #markdown-content.prose a:hover,
+.dark #markdown-content.prose .markdown-link:hover,
+.dark #markdown-content.prose .markdown-li a:hover,
+.dark #markdown-content.prose .markdown-p a:hover {
     color: rgb(252 211 77) !important;
     /* amber-300 */
 }
